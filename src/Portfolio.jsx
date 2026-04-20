@@ -624,8 +624,8 @@ function Footer({ dark }) {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "rgba(255,255,255,0.2)" }}>
-        <span>Copyright © 2024 Dzaky Pranantya®</span>
-        <span>Made with craft ✦</span>
+        <span>Copyright © 2026 dzakypranantya®</span>
+        <span>Made with Anjay ✦</span>
       </div>
     </footer>
   );
