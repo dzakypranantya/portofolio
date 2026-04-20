@@ -35,13 +35,33 @@ const STATS = [
   { num: "3+", label: "Years of experience in web development." },
   { num: "SI", label: "Informatics System - Telkom University" },
   { num: "∞", label: "Ideas yet to be realized." },
-  { num: "ㅋㅋ", label: "Nice Guy." },
+  { num: "✦", label: "Available for any jobs." },
 ];
 
-const INTERESTS = [
-  { icon: "🖌", title: "UI/UX Design", desc: "Designing user experiences that are intuitive, visually appealing, and meaningful." },
-  { icon: "💻", title: "Full Stack Dev", desc: "Proficient across all layers — from databases and APIs to user interfaces that are easy on the eyes." },
-  { icon: "🎨", title: "Graphic Design", desc: "Transforming abstract concepts into strong and memorable visuals." },
+const SKILLS = [
+  { name: "Java",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
+  { name: "HTML5",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+  { name: "CSS3",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
+  { name: "JavaScript",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+  { name: "C#",          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" },
+  { name: "Node.js",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
+  { name: "React.js",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+  { name: "Next.js",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
+  { name: "MySQL",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+  { name: "MariaDB",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mariadb/mariadb-original.svg" },
+  { name: "Express.js",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" },
+  { name: "AJAX",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jquery/jquery-original.svg" },
+  { name: "Tailwind CSS",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+  { name: "Bootstrap",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" },
+  { name: "WordPress",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg" },
+  { name: "Power BI",    icon: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
+  { name: "Git",         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+  { name: "Figma",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
+  { name: "Adobe PS",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg" },
+  { name: "MS Office",   icon: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Microsoft_Office_logo_%282019%E2%80%93present%29.svg" },
+  { name: "Vite.js",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" },
+  { name: "Lua",         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/lua/lua-original.svg" },
+  { name: "Python",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
 ];
 
 const EDUCATION = [
@@ -56,40 +76,51 @@ const EDUCATION = [
     badge: "S1 · 2025–NOW",
     name: "Telkom University",
     desc: "Currently pursuing a Bachelor’s degree in Information Systems, with a focus on system design, software development, and IT-driven digital transformation.",
-    gradeText: "Studied",
+    gradeText: "On Progress",
     pct: "25%",
   },
 ];
 
-// Data disederhanakan: Masing-masing kategori hanya punya satu "kartu utama"
 const PORTFOLIO_DATA = [
   {
     category: "Backend",
-    title: "Core logic & DB Architecture", // Judul baru untuk kartu
-    link: "https://github.com/dzakypranantya",
-    linkLabel: "GitHub",
-    desc: "Building scalable APIs, microservices, and database schemas with efficiency in mind.", // Deskripsi baru
+    title: "Core logic & DB Architecture",
+    desc: "Building scalable APIs, microservices, and database schemas with efficiency in mind.",
+    items: [
+      { name: "Untitled", link: "https://github.com/dzakypranantya" },
+      { name: "Untitled", link: "https://github.com/dzakypranantya" },
+      { name: "Untitled", link: "https://github.com/dzakypranantya" },
+    ]
   },
   {
     category: "Frontend",
     title: "Modern Web Interfaces",
-    link: "https://github.com/dzakypranantya",
-    linkLabel: "GitHub",
     desc: "Crafting responsive, high-performance web applications using React and modern CSS.",
+    items: [
+      { name: "Untitled", link: "https://github.com/dzakypranantya" },
+      { name: "Untitled", link: "https://github.com/dzakypranantya" },
+      { name: "Untitled", link: "https://github.com/dzakypranantya" },
+    ]
   },
   {
     category: "UI/UX",
     title: "User-Centered Experiences",
-    link: "https://www.behance.net/dzakypranantya",
-    linkLabel: "Behance",
     desc: "Designing intuitive interfaces that balance aesthetics with functionality to solve user problems.",
+    items: [
+      { name: "Untitled", link: "https://www.behance.net/dzakypranantya" },
+      { name: "Untitled", link: "https://www.behance.net/dzakypranantya" },
+      { name: "Untitled", link: "https://www.behance.net/dzakypranantya" },
+    ]
   },
   {
     category: "Design",
     title: "Visual Storytelling & Identity",
-    link: "https://www.behance.net/dzakypranantya",
-    linkLabel: "Behance",
     desc: "Developing strong visual identities through graphic design, typography, and color theory.",
+    items: [
+      { name: "Untitled", link: "https://www.behance.net/dzakypranantya" },
+      { name: "Untitled", link: "https://www.behance.net/dzakypranantya" },
+      { name: "Untitled", link: "https://www.behance.net/dzakypranantya" },
+    ]
   },
 ];
 
@@ -207,52 +238,104 @@ function GlobalStyles({ dark }) {
         }
 
         ::selection { background: var(--wine); color: white; }
+
+        @media (max-width: 768px) {
+          .hamburger-btn { display: flex !important; }
+          .nav-links-container {
+            flex-direction: column;
+            width: 100%;
+            max-height: 0;
+            opacity: 0;
+            pointer-events: none;
+            padding: 0;
+          }
+          .nav-links-container.show {
+            max-height: 400px;
+            opacity: 1;
+            pointer-events: auto;
+            padding: 10px 0 15px;
+          }
+          .nav-links-container a {
+            width: 100%;
+            text-align: center;
+            padding: 12px !important;
+          }
+        }
       `}</style>
     </>
   );
 }
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
-function Navbar({ active, dark }) {
+function Navbar({ active, dark, isOpen, setIsOpen }) {
   return (
     <nav style={{
       position: "fixed",
       top: "24px",
       left: "50%",
       transform: "translateX(-50%)",
-      zIndex: 100,
+      zIndex: 1000,
       display: "flex",
+      flexDirection: "column",
       alignItems: "center",
-      gap: "4px",
       background: dark ? "rgba(18,13,15,0.88)" : "rgba(250,248,244,0.88)",
       backdropFilter: "blur(12px)",
       border: `1px solid var(--border)`,
-      borderRadius: "999px",
+      borderRadius: isOpen ? "24px" : "999px",
       padding: "6px",
-      boxShadow: dark
-        ? "0 4px 24px rgba(0,0,0,0.4)"
-        : "0 2px 12px rgba(122,40,66,0.08)",
+      boxShadow: dark ? "0 4px 24px rgba(0,0,0,0.4)" : "0 2px 12px rgba(122,40,66,0.08)",
+      width: isOpen ? "85%" : "auto",
+      maxWidth: "500px",
+      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
     }}>
-      {NAV_LINKS.map(({ href, label }) => (
-        <a
-          key={href}
-          href={href}
-          onClick={(e) => { e.preventDefault(); smoothScrollTo(href); }}
+      <div style={{ display: "flex", width: "100%", justifyContent: "center", alignItems: "center", position: "relative" }}>
+        <button 
+          className="hamburger-btn"
+          onClick={() => setIsOpen(!isOpen)}
           style={{
-            fontSize: "11px",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            padding: "8px 16px",
-            borderRadius: "999px",
-            textDecoration: "none",
-            transition: "all 0.2s ease",
-            background: active === href ? "var(--wine)" : "transparent",
-            color: active === href ? "white" : "var(--muted)",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            display: "none",
+            flexDirection: "column",
+            gap: "5px",
+            padding: "12px",
+            zIndex: 1001
           }}
         >
-          {label}
-        </a>
-      ))}
+          <div style={{ width: "20px", height: "2px", background: "var(--wine)", transform: isOpen ? "rotate(45deg) translate(5px, 5px)" : "none", transition: "0.3s" }} />
+          <div style={{ width: "20px", height: "2px", background: "var(--wine)", opacity: isOpen ? 0 : 1, transition: "0.3s" }} />
+          <div style={{ width: "20px", height: "2px", background: "var(--wine)", transform: isOpen ? "rotate(-45deg) translate(5px, -5px)" : "none", transition: "0.3s" }} />
+        </button>
+
+        <div className={`nav-links-container ${isOpen ? 'show' : ''}`} style={{ display: "flex", gap: "4px", overflow: "hidden", transition: "all 0.3s ease" }}>
+          {NAV_LINKS.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              onClick={(e) => { 
+                e.preventDefault(); 
+                smoothScrollTo(href); 
+                setIsOpen(false);
+              }}
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                padding: "8px 16px",
+                borderRadius: "999px",
+                textDecoration: "none",
+                transition: "all 0.2s ease",
+                background: active === href ? "var(--wine)" : "transparent",
+                color: active === href ? "white" : "var(--muted)",
+                whiteSpace: "nowrap"
+              }}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 }
@@ -276,7 +359,7 @@ function Hero({ dark }) {
         color: dark ? "#e08aa0" : "#7a2842",
         margin: 0,
       }}>
-        DDzaky
+        Dzaky
       </h1>
       <p style={{ position: "relative", zIndex: 10, marginTop: "16px", color: "var(--muted)", fontStyle: "italic", fontWeight: 300, fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px,3vw,30px)", animation: "fadeUp 0.8s 0.2s ease both" }}>
         Frontend in the streets, backend in the sheets.
@@ -337,7 +420,7 @@ function About({ dark }) {
           onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = dark ? "0 8px 32px rgba(0,0,0,0.4)" : "0 8px 24px rgba(122,40,66,0.12)"; }}
           onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
           >
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "52px", lineHeight: 1, color: "var(--wine)" }}>{s.num}</div>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "58px", lineHeight: 1, color: "var(--wine)", fontWeight: 300 }}>{s.num}</div>
             <div style={{ fontSize: "12px", color: "var(--muted)", marginTop: "4px", letterSpacing: "0.04em" }}>{s.label}</div>
           </div>
         ))}
@@ -349,38 +432,47 @@ function About({ dark }) {
 function Interests({ dark }) {
   return (
     <section id="interests" style={{ background: "var(--bg-card)", padding: "80px 8vw" }}>
-      <div style={{ textAlign: "center", marginBottom: "48px" }}>
-        <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>What I Love</p>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, color: "var(--ink)" }}>Interests</h2>
+      <div style={{ textAlign: "center", marginBottom: "56px" }}>
+        <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>What I Work With</p>
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, color: "var(--ink)" }}>My Skills</h2>
+        <p style={{ marginTop: "12px", fontSize: "14px", color: "var(--muted)", fontStyle: "italic" }}>The tools and technologies I use to build and solve.</p>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}>
-        {INTERESTS.map((item) => (
-          <div key={item.title}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))",
+        gap: "20px",
+        maxWidth: "900px",
+        margin: "0 auto",
+      }}>
+        {SKILLS.map((skill) => (
+          <div key={skill.name}
             style={{
-              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              background: dark ? "rgba(255,255,255,0.04)" : "#ffffff",
               border: `1px solid var(--border)`,
               borderRadius: "20px",
-              padding: "40px 32px",
-              textAlign: "center",
-              overflow: "hidden",
+              padding: "20px 12px",
               transition: "all 0.3s ease",
               cursor: "default",
+              boxShadow: dark ? "none" : "0 2px 8px rgba(122,40,66,0.06)",
             }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = "translateY(-6px)";
+              e.currentTarget.style.boxShadow = dark ? "0 12px 32px rgba(0,0,0,0.4)" : "0 12px 28px rgba(122,40,66,0.14)";
               e.currentTarget.style.borderColor = "var(--border-hover)";
-              e.currentTarget.querySelector(".card-bg").style.opacity = "1";
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = "";
+              e.currentTarget.style.boxShadow = dark ? "none" : "0 2px 8px rgba(122,40,66,0.06)";
               e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.querySelector(".card-bg").style.opacity = "0";
             }}
           >
-            <div className="card-bg" style={{ position: "absolute", inset: 0, background: dark ? "linear-gradient(135deg, rgba(201,96,126,0.12), transparent)" : "linear-gradient(135deg, #f5eaed, transparent)", opacity: 0, transition: "opacity 0.3s ease" }} />
-            <span style={{ position: "relative", zIndex: 1, display: "block", fontSize: "48px", marginBottom: "16px" }}>{item.icon}</span>
-            <div style={{ position: "relative", zIndex: 1, fontFamily: "'Cormorant Garamond', serif", fontSize: "28px", color: "var(--ink)", marginBottom: "8px" }}>{item.title}</div>
-            <p style={{ position: "relative", zIndex: 1, fontSize: "13px", color: "var(--muted)", lineHeight: 1.7 }}>{item.desc}</p>
+            <img src={skill.icon} alt={skill.name} style={{ width: "48px", height: "48px", objectFit: "contain" }} />
+            <span style={{ fontSize: "11px", color: "var(--muted)", textAlign: "center", fontWeight: 500, letterSpacing: "0.02em" }}>{skill.name}</span>
           </div>
         ))}
       </div>
@@ -436,9 +528,7 @@ function Education({ dark }) {
 }
 
 function PortfolioSection({ dark }) {
-  // State untuk menyimpan index kartu yang sedang terbuka
   const [openCardIndex, setOpenCardIndex] = useState(null);
-
   const toggle = (index) => {
     setOpenCardIndex(prevIndex => (prevIndex === index ? null : index));
   };
@@ -447,16 +537,10 @@ function PortfolioSection({ dark }) {
     <section id="karya" style={{ background: "var(--bg-card)", padding: "80px 8vw" }}>
       <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>Portfolio</p>
       <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, marginBottom: "48px", color: "var(--ink)" }}>Portofolio</h2>
-
-      {/* Grid disesuaikan menjadi 4 kolom yang sejajar pada layar besar */}
       <div style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", // Ini akan membuat kartu sejajar jika ruang cukup
+        gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
         gap: "12px",
-        // Menambahkan grid-template-columns spesifik untuk memastikan 4 kolom sejajar jika layar cukup lebar (di atas minmax)
-        "@media (min-width: 1100px)": {
-          gridTemplateColumns: "repeat(4, 1fr)",
-        }
       }}>
         {PORTFOLIO_DATA.map((item, index) => {
           const isOpen = openCardIndex === index;
@@ -468,7 +552,6 @@ function PortfolioSection({ dark }) {
               background: dark ? "#1a1114" : "#faf8f4",
               transition: "border-color 0.3s ease",
             }}>
-              {/* Header / Toggle (Accordion style) */}
               <button
                 onClick={() => toggle(index)}
                 style={{
@@ -481,63 +564,34 @@ function PortfolioSection({ dark }) {
                   border: "none",
                   borderBottom: isOpen ? `1px solid var(--border)` : "1px solid transparent",
                   cursor: "pointer",
-                  transition: "border-color 0.3s ease",
                 }}
               >
                 <div style={{ textAlign: "left" }}>
                     <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", margin: "0 0 4px" }}>
                         {item.category}
                     </p>
-                    <span style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "18px",
-                      color: "var(--ink)",
-                      fontWeight: 400,
-                    }}>
+                    <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "18px", color: "var(--ink)", fontWeight: 400 }}>
                       {item.title}
                     </span>
                 </div>
-                <span style={{
-                  color: isOpen ? "var(--wine-light)" : "var(--muted)",
-                  fontSize: "9px",
-                  transition: "transform 0.3s ease, color 0.3s ease",
-                  transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                  display: "inline-block",
-                  flexShrink: 0,
-                  marginLeft: "12px",
-                }}>▼</span>
+                <span style={{ color: isOpen ? "var(--wine-light)" : "var(--muted)", fontSize: "9px", transition: "transform 0.3s ease", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}>▼</span>
               </button>
-
-              {/* Dropdown Content */}
-              <div style={{
-                maxHeight: isOpen ? "200px" : "0px", // Menyesuaikan tinggi agar muat deskripsi
-                overflow: "hidden",
-                transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1)",
-              }}>
+              <div style={{ maxHeight: isOpen ? "300px" : "0px", overflow: "hidden", transition: "max-height 0.4s ease" }}>
                 <div style={{ padding: "16px 20px 20px" }}>
-                  <p style={{ fontSize: "13px", color: "var(--muted)", marginBottom: "16px", marginTop: 0, lineHeight: 1.6 }}>
-                    {item.desc}
-                  </p>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      fontSize: "12px",
-                      color: "var(--wine-light)",
-                      textDecoration: "none",
-                      fontWeight: 500,
-                      letterSpacing: "0.05em",
-                      transition: "opacity 0.2s",
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.opacity = "0.7"}
-                    onMouseLeave={e => e.currentTarget.style.opacity = "1"}
-                  >
-                    🔗 View on {item.linkLabel} →
-                  </a>
+                  <p style={{ fontSize: "13px", color: "var(--muted)", marginBottom: "16px", lineHeight: 1.6 }}>{item.desc}</p>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
+                    {item.items.map((subItem, i) => (
+                      <li key={i}>
+                        <a 
+                          href={subItem.link} 
+                          rel="noopener noreferrer" 
+                          style={{ fontSize: "12px", color: "var(--wine-light)", textDecoration: "none", fontWeight: 500, display: "block" }}
+                        >
+                          🔗 {subItem.name} →
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -551,7 +605,7 @@ function PortfolioSection({ dark }) {
 function Footer({ dark }) {
   return (
     <footer style={{ background: "var(--footer-bg)", color: "white", padding: "56px 8vw" }}>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: "40px", paddingBottom: "40px", borderBottom: "1px solid rgba(255,255,255,0.08)", marginBottom: "32px" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "40px", paddingBottom: "40px", borderBottom: "1px solid rgba(255,255,255,0.08)", marginBottom: "32px" }}>
         <div>
           <div style={{ fontFamily: "'Caveat', cursive", fontSize: "62px", fontWeight: "bold", lineHeight: 1, color: "white" }}>
             Dzaky Pranantya<span style={{ color: "var(--wine-light)" }}>.</span>
@@ -561,47 +615,12 @@ function Footer({ dark }) {
           </p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px", textAlign: "right" }}>
-          <a href="#hero" onClick={(e) => { e.preventDefault(); smoothScrollTo("#hero"); }}
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s" }}
-            onMouseEnter={e => e.currentTarget.style.color = "var(--wine-light)"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
-            Back to top ↑
-          </a>
-          <a href="https://github.com/dzakypranantya" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s" }}
-            onMouseEnter={e => e.currentTarget.style.color = "var(--wine-light)"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
-            GitHub
-          </a>
-          <a href="https://www.instagram.com/dzakypranantya" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}
-            onMouseEnter={e => e.currentTarget.style.color = "#E1306C"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-            </svg>
-            Instagram
-          </a>
-          <a href="https://wa.me/6289630803000" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}
-            onMouseEnter={e => e.currentTarget.style.color = "#25D366"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            WhatsApp
-          </a>
-          <a href="https://www.linkedin.com/in/dzaky-pranantya-7096b22b4/" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}
-            onMouseEnter={e => e.currentTarget.style.color = "#0A66C2"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            LinkedIn
-          </a>
+          <a href="#hero" onClick={(e) => { e.preventDefault(); smoothScrollTo("#hero"); }} style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Back to top ↑</a>
+          <a href="mailto:dzakypranantyaa@gmail.com" target="_blank" rel="noopener noreferrer" style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Email</a>
+          <a href="https://www.instagram.com/dzakypranantya" target="_blank" rel="noopener noreferrer" style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Instagram</a>
+          <a href="https://wa.me/6289630803000" target="_blank" rel="noopener noreferrer" style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>WhatsApp</a>
+          <a href="https://www.linkedin.com/in/dzaky-pranantya-7096b22b4/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>LinkedIn</a>
+          <a href="https://github.com/dzakypranantya" target="_blank" rel="noopener noreferrer" style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>GitHub</a>
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "rgba(255,255,255,0.2)" }}>
@@ -616,6 +635,7 @@ function Footer({ dark }) {
 export default function Portfolio() {
   const [activeNav, setActiveNav] = useState("#hero");
   const [dark, setDark] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -639,7 +659,7 @@ export default function Portfolio() {
       overflowX: "hidden",
     }}>
       <GlobalStyles dark={dark} />
-      <Navbar active={activeNav} dark={dark} />
+      <Navbar active={activeNav} dark={dark} isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
       <ThemeToggle dark={dark} onToggle={() => setDark(d => !d)} />
       <Hero dark={dark} />
       <About dark={dark} />
