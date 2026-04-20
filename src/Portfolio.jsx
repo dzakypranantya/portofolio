@@ -359,7 +359,7 @@ function Hero({ dark }) {
         color: dark ? "#e08aa0" : "#7a2842",
         margin: 0,
       }}>
-        Dzaky
+        DDzaky
       </h1>
       <p style={{ position: "relative", zIndex: 10, marginTop: "16px", color: "var(--muted)", fontStyle: "italic", fontWeight: 300, fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px,3vw,30px)", animation: "fadeUp 0.8s 0.2s ease both" }}>
         Frontend in the streets, backend in the sheets.
