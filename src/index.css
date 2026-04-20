@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#hero h1 {
+  font-size: clamp(90px, 18vw, 180px) !important;
+  font-weight: 700 !important;
+  line-height: 0.85 !important;
+}
