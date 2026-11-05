@@ -1,25 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import foto from "./foto.png";
 
-// ─── SMOOTH SCROLL ───────────────────────────────────────────────────────────
 function smoothScrollTo(targetId) {
   const target = document.querySelector(targetId);
   if (!target) return;
+
   const targetY = target.getBoundingClientRect().top + window.scrollY - 80;
-  const startY = window.scrollY;
-  const distance = targetY - startY;
-  const duration = 900;
-  let startTime = null;
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-  function step(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const elapsed = timestamp - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    window.scrollTo(0, startY + distance * easeInOutCubic(progress));
-    if (progress < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+  window.scrollTo({ top: targetY, behavior: "smooth" });
 }
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
@@ -40,7 +27,7 @@ const STATS = [
 
 const INTERESTS = [
   { icon: "🖌", title: "UI/UX Design", desc: "Designing user experiences that are intuitive, visually appealing, and meaningful." },
-  { icon: "💻", title: "Full Stack Dev", desc: "Proficient across all layers — from databases and APIs to user interfaces that are easy on the eyes." },
+  { icon: "💻", title: "Full Stack Dev", desc: "Proficient across all layers from databases and APIs to user interfaces that are easy on the eyes." },
   { icon: "🎨", title: "Graphic Design", desc: "Transforming abstract concepts into strong and memorable visuals." },
 ];
 
@@ -142,7 +129,6 @@ function GlobalStyles({ dark }) {
   const t = dark
     ? {
         bg: "#120d0f",
-        bgAlt: "#1a1114",
         bgCard: "#1e1419",
         ink: "#f0e8ea",
         muted: "#a0868e",
@@ -153,10 +139,11 @@ function GlobalStyles({ dark }) {
         borderHover: "rgba(224,138,160,0.5)",
         footerBg: "#0a0608",
         statCard: "#1e1419",
+        statShadow: "0 8px 32px rgba(0,0,0,0.4)",
+        educationShadow: "0 16px 48px rgba(0,0,0,0.5)",
       }
     : {
         bg: "#faf8f4",
-        bgAlt: "#faf8f4",
         bgCard: "#ffffff",
         ink: "#1a1614",
         muted: "#7c716e",
@@ -167,6 +154,8 @@ function GlobalStyles({ dark }) {
         borderHover: "rgba(176,83,112,0.6)",
         footerBg: "#1a1614",
         statCard: "#ffffff",
+        statShadow: "0 8px 24px rgba(122,40,66,0.12)",
+        educationShadow: "0 16px 48px rgba(122,40,66,0.1)",
       };
 
   return (
@@ -176,7 +165,6 @@ function GlobalStyles({ dark }) {
 
         :root {
           --bg: ${t.bg};
-          --bg-alt: ${t.bgAlt};
           --bg-card: ${t.bgCard};
           --ink: ${t.ink};
           --muted: ${t.muted};
@@ -187,12 +175,30 @@ function GlobalStyles({ dark }) {
           --border-hover: ${t.borderHover};
           --footer-bg: ${t.footerBg};
           --stat-card: ${t.statCard};
+          --stat-shadow: ${t.statShadow};
+          --education-shadow: ${t.educationShadow};
         }
 
         @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-        @keyframes nameShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes scrollAnim { 0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); } }
+
+        .stat-card:hover { transform: translateY(-4px); box-shadow: var(--stat-shadow); }
+        .interest-card:hover { transform: translateY(-6px); border-color: var(--border-hover); }
+        .interest-card:hover .card-bg { opacity: 1; }
+        .education-card:hover { transform: translateY(-4px); box-shadow: var(--education-shadow); }
+        .education-card:hover .top-bar { transform: scaleX(1); }
+        .top-bar { transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+        .portfolio-link:hover { opacity: 0.7; }
+        .footer-link { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+        .footer-link:hover { color: var(--wine-light); }
+        .footer-link-instagram:hover { color: #E1306C; }
+        .footer-link-whatsapp:hover { color: #25D366; }
+        .footer-link-linkedin:hover { color: #0A66C2; }
+
+        @media (min-width: 1100px) {
+          .portfolio-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
 
         * { transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease; }
 
@@ -237,7 +243,10 @@ function Navbar({ active, dark }) {
         <a
           key={href}
           href={href}
-          onClick={(e) => { e.preventDefault(); smoothScrollTo(href); }}
+          onClick={(event) => {
+            event.preventDefault();
+            smoothScrollTo(href);
+          }}
           style={{
             fontSize: "11px",
             letterSpacing: "0.12em",
@@ -264,38 +273,50 @@ function Hero({ dark }) {
       <div style={{ position: "absolute", width: "340px", height: "340px", borderRadius: "50%", border: `1px solid var(--border)`, top: "50%", left: "50%", transform: "translate(-50%,-50%)", animation: "spin 25s linear infinite reverse" }} />
       <div style={{ position: "absolute", top: "50%", left: "-10%", width: "120%", height: "1px", background: `var(--border)`, transform: "rotate(-6deg)" }} />
 
-      <p style={{ position: "relative", zIndex: 10, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "20px", animation: "fadeUp 0.8s ease both" }}>
-        ✦ Full Stack Developer
-      </p>
-      <h1 style={{
-        position: "relative", zIndex: 10,
-        fontFamily: "'Caveat', cursive",
-        fontSize: "clamp(90px,18vw,180px)",
-        fontWeight: "700",
-        lineHeight: 0.85,
-        color: dark ? "#e08aa0" : "#7a2842",
-        margin: 0,
-      }}>
-        DDzaky
-      </h1>
+      <div style={{ position: "relative", display: "grid", placeItems: "center", width: "min(100%, 780px)", minHeight: "clamp(260px, 48vh, 480px)" }}>
+        <img
+          src={foto}
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            transform: "translate(30px, -50px)",
+            inset: 0,
+            margin: "auto",
+            height: "100%",
+            maxWidth: "100%",
+            objectFit: "contain",
+            opacity: dark ? 0.82 : 0.9,
+            filter: dark ? "drop-shadow(0 18px 38px rgba(0,0,0,0.5))" : "drop-shadow(0 18px 38px rgba(28,16,20,0.24))",
+          }}
+        />
+        <h1 style={{
+          position: "relative", zIndex: 2,
+          fontFamily: "'Caveat', cursive",
+          fontSize: "clamp(90px,18vw,180px)",
+          fontWeight: "700",
+          lineHeight: 0.85,
+          color: dark ? "#fff4f6" : "#fff",
+          textShadow: dark ? "0 3px 30px rgba(18,13,15,0.9)" : "0 3px 30px rgba(26,22,20,0.72)",
+          margin: 0,
+        }}>
+          DZAKY
+        </h1>
+      </div>
       <p style={{ position: "relative", zIndex: 10, marginTop: "16px", color: "var(--muted)", fontStyle: "italic", fontWeight: 300, fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px,3vw,30px)", animation: "fadeUp 0.8s 0.2s ease both" }}>
         Frontend in the streets, backend in the sheets.
       </p>
       <p style={{ position: "relative", zIndex: 10, marginTop: "28px", maxWidth: "480px", fontSize: "14px", lineHeight: 1.8, color: "var(--muted)", animation: "fadeUp 0.8s 0.3s ease both" }}>
-        The kind of guy who architects the database, writes the API, and designs the UI — all before lunch.
+        The kind of guy who architects the database, writes the API, and designs the UI all before lunch.
         From raw logic to polished interfaces, the full stack is just home turf. <br />
         <strong style={{ color: "var(--wine)", fontWeight: 500 }}>No brain required.</strong>
       </p>
 
-      <div style={{ position: "absolute", bottom: "36px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", animation: "fadeUp 0.8s 0.5s ease both" }}>
-        <div style={{ width: "1px", height: "40px", background: `linear-gradient(to bottom, var(--wine), transparent)`, animation: "scrollAnim 1.8s ease-in-out infinite" }} />
-        <span style={{ fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--muted)" }}>scroll</span>
-      </div>
     </section>
   );
 }
 
-function About({ dark }) {
+function About() {
   const [ref, inView] = useInView();
   return (
     <section id="about" ref={ref} style={{
@@ -314,19 +335,19 @@ function About({ dark }) {
           Built different.<br />Ships at dawn,<br />debugs at dusk.
         </h2>
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "var(--muted)", marginBottom: "16px" }}>
-          A <strong style={{ color: "var(--ink)", fontWeight: 500 }}>full stack developer</strong> who lives at the intersection of code and craft — turning complex problems into elegant systems that actually work.
+          A <strong style={{ color: "var(--ink)", fontWeight: 500 }}>full stack developer</strong> who lives at the intersection of code and craft turning complex problems into elegant systems that actually work.
         </p>
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "var(--muted)" }}>
-          From backend architecture to pixel-perfect frontends, every layer of the stack is fair game — and every project ships.
+          From backend architecture to pixel-perfect frontends, every layer of the stack is fair game and every project ships.
         </p>
         <blockquote style={{ marginTop: "32px", paddingLeft: "24px", borderLeft: `2px solid var(--wine)`, fontStyle: "italic", fontSize: "28px", lineHeight: 1.5, color: "var(--wine)", fontFamily: "'Cormorant Garamond', serif" }}>
-          "Why pick a lane when you can own the whole road — <em style={{ fontStyle: "normal" }}>without a BRAIN</em>"
+          &quot;Why pick a lane when you can own the whole road <em style={{ fontStyle: "normal" }}>without a BRAIN</em>&quot;
         </blockquote>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
         {STATS.map((s) => (
-          <div key={s.label} style={{
+          <div key={s.label} className="stat-card" style={{
             background: "var(--stat-card)",
             border: `1px solid var(--border)`,
             borderRadius: "16px",
@@ -334,8 +355,6 @@ function About({ dark }) {
             transition: "all 0.3s ease",
             cursor: "default",
           }}
-          onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = dark ? "0 8px 32px rgba(0,0,0,0.4)" : "0 8px 24px rgba(122,40,66,0.12)"; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
           >
             <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "52px", lineHeight: 1, color: "var(--wine)" }}>{s.num}</div>
             <div style={{ fontSize: "12px", color: "var(--muted)", marginTop: "4px", letterSpacing: "0.04em" }}>{s.label}</div>
@@ -355,7 +374,7 @@ function Interests({ dark }) {
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}>
         {INTERESTS.map((item) => (
-          <div key={item.title}
+          <div key={item.title} className="interest-card"
             style={{
               position: "relative",
               border: `1px solid var(--border)`,
@@ -365,16 +384,6 @@ function Interests({ dark }) {
               overflow: "hidden",
               transition: "all 0.3s ease",
               cursor: "default",
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = "translateY(-6px)";
-              e.currentTarget.style.borderColor = "var(--border-hover)";
-              e.currentTarget.querySelector(".card-bg").style.opacity = "1";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = "";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.querySelector(".card-bg").style.opacity = "0";
             }}
           >
             <div className="card-bg" style={{ position: "absolute", inset: 0, background: dark ? "linear-gradient(135deg, rgba(201,96,126,0.12), transparent)" : "linear-gradient(135deg, #f5eaed, transparent)", opacity: 0, transition: "opacity 0.3s ease" }} />
@@ -388,7 +397,7 @@ function Interests({ dark }) {
   );
 }
 
-function Education({ dark }) {
+function Education() {
   const [ref, inView] = useInView();
   return (
     <section id="education" ref={ref} style={{ padding: "80px 8vw", background: "var(--bg)" }}>
@@ -396,7 +405,7 @@ function Education({ dark }) {
       <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, marginBottom: "40px", color: "var(--ink)" }}>Study</h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px" }}>
         {EDUCATION.map((edu) => (
-          <div key={edu.name}
+          <div key={edu.name} className="education-card"
             style={{
               position: "relative",
               background: "var(--bg-card)",
@@ -407,18 +416,8 @@ function Education({ dark }) {
               transition: "all 0.3s ease",
               cursor: "default",
             }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = "translateY(-4px)";
-              e.currentTarget.style.boxShadow = dark ? "0 16px 48px rgba(0,0,0,0.5)" : "0 16px 48px rgba(122,40,66,0.1)";
-              e.currentTarget.querySelector(".top-bar").style.transform = "scaleX(1)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = "";
-              e.currentTarget.style.boxShadow = "";
-              e.currentTarget.querySelector(".top-bar").style.transform = "scaleX(0)";
-            }}
           >
-            <div className="top-bar" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: "linear-gradient(to right, var(--wine), var(--wine-light))", transform: "scaleX(0)", transformOrigin: "left", transition: "transform 0.5s ease" }} />
+            <div className="top-bar" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: "linear-gradient(to right, var(--wine), var(--wine-light))" }} />
             <span style={{ display: "inline-block", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--wine)", background: "var(--wine-pale)", borderRadius: "999px", padding: "4px 12px", marginBottom: "16px" }}>{edu.badge}</span>
             <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "26px", lineHeight: 1.2, color: "var(--ink)", marginBottom: "12px" }}>{edu.name}</h3>
             <p style={{ fontSize: "13.5px", lineHeight: 1.8, color: "var(--muted)" }}>{edu.desc}</p>
@@ -448,16 +447,7 @@ function PortfolioSection({ dark }) {
       <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>Portfolio</p>
       <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, marginBottom: "48px", color: "var(--ink)" }}>Portofolio</h2>
 
-      {/* Grid disesuaikan menjadi 4 kolom yang sejajar pada layar besar */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", // Ini akan membuat kartu sejajar jika ruang cukup
-        gap: "12px",
-        // Menambahkan grid-template-columns spesifik untuk memastikan 4 kolom sejajar jika layar cukup lebar (di atas minmax)
-        "@media (min-width: 1100px)": {
-          gridTemplateColumns: "repeat(4, 1fr)",
-        }
-      }}>
+      <div className="portfolio-grid">
         {PORTFOLIO_DATA.map((item, index) => {
           const isOpen = openCardIndex === index;
           return (
@@ -519,6 +509,7 @@ function PortfolioSection({ dark }) {
                     {item.desc}
                   </p>
                   <a
+                    className="portfolio-link"
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -533,8 +524,6 @@ function PortfolioSection({ dark }) {
                       letterSpacing: "0.05em",
                       transition: "opacity 0.2s",
                     }}
-                    onMouseEnter={e => e.currentTarget.style.opacity = "0.7"}
-                    onMouseLeave={e => e.currentTarget.style.opacity = "1"}
                   >
                     🔗 View on {item.linkLabel} →
                   </a>
@@ -548,7 +537,7 @@ function PortfolioSection({ dark }) {
   );
 }
 
-function Footer({ dark }) {
+function Footer() {
   return (
     <footer style={{ background: "var(--footer-bg)", color: "white", padding: "56px 8vw" }}>
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: "40px", paddingBottom: "40px", borderBottom: "1px solid rgba(255,255,255,0.08)", marginBottom: "32px" }}>
@@ -561,22 +550,19 @@ function Footer({ dark }) {
           </p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px", textAlign: "right" }}>
-          <a href="#hero" onClick={(e) => { e.preventDefault(); smoothScrollTo("#hero"); }}
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s" }}
-            onMouseEnter={e => e.currentTarget.style.color = "var(--wine-light)"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
+          <a className="footer-link" href="#hero" onClick={(event) => {
+            event.preventDefault();
+            smoothScrollTo("#hero");
+          }}
+            style={{ fontSize: "13px", textDecoration: "none" }}>
             Back to top ↑
           </a>
-          <a href="https://github.com/dzakypranantya" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s" }}
-            onMouseEnter={e => e.currentTarget.style.color = "var(--wine-light)"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
+          <a className="footer-link" href="https://github.com/dzakypranantya" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: "13px", textDecoration: "none" }}>
             GitHub
           </a>
-          <a href="https://www.instagram.com/dzakypranantya" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}
-            onMouseEnter={e => e.currentTarget.style.color = "#E1306C"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
+          <a className="footer-link footer-link-instagram" href="https://www.instagram.com/dzakypranantya" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: "13px", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
               <circle cx="12" cy="12" r="4"/>
@@ -584,19 +570,15 @@ function Footer({ dark }) {
             </svg>
             Instagram
           </a>
-          <a href="https://wa.me/6289630803000" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}
-            onMouseEnter={e => e.currentTarget.style.color = "#25D366"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
+          <a className="footer-link footer-link-whatsapp" href="https://wa.me/6289630803000" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: "13px", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             WhatsApp
           </a>
-          <a href="https://www.linkedin.com/in/dzaky-pranantya-7096b22b4/" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}
-            onMouseEnter={e => e.currentTarget.style.color = "#0A66C2"}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}>
+          <a className="footer-link footer-link-linkedin" href="https://www.linkedin.com/in/dzaky-pranantya-7096b22b4/" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: "13px", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px", justifyContent: "flex-end" }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
@@ -606,7 +588,7 @@ function Footer({ dark }) {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "rgba(255,255,255,0.2)" }}>
         <span>Copyright © 2024 Dzaky Pranantya®</span>
-        <span>Made with craft ✦</span>
+        <span>bawelmonyet</span>
       </div>
     </footer>
   );
@@ -642,11 +624,11 @@ export default function Portfolio() {
       <Navbar active={activeNav} dark={dark} />
       <ThemeToggle dark={dark} onToggle={() => setDark(d => !d)} />
       <Hero dark={dark} />
-      <About dark={dark} />
+      <About />
       <Interests dark={dark} />
-      <Education dark={dark} />
+      <Education />
       <PortfolioSection dark={dark} />
-      <Footer dark={dark} />
+      <Footer />
     </div>
   );
 }
