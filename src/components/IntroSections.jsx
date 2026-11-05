@@ -40,11 +40,12 @@ export function Hero({ dark }) {
         </h1>
       </div>
       <p style={{ position: "relative", zIndex: 10, marginTop: "16px", color: "var(--muted)", fontStyle: "italic", fontWeight: 300, fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px,3vw,30px)", animation: "fadeUp 0.8s 0.2s ease both" }}>
-        Belajar, merancang, lalu membangun pengalaman digital.
+        Frontend in the streets, backend in the sheets.
       </p>
       <p style={{ position: "relative", zIndex: 10, marginTop: "28px", maxWidth: "480px", fontSize: "14px", lineHeight: 1.8, color: "var(--muted)", animation: "fadeUp 0.8s 0.3s ease both" }}>
-        Saya Dzaky Pranantya, mahasiswa Sistem Informasi di Telkom University.
-        Saya tertarik pada pengembangan web dan desain antarmuka, dan terus belajar lewat proses mencoba dan membuat.
+        The kind of guy who architects the database, writes the API, and designs the UI all before lunch.
+        From raw logic to polished interfaces, the full stack is just home turf. <br />
+        <strong style={{ color: "var(--wine)", fontWeight: 500 }}>No brain required.</strong>
       </p>
 
     </section>
@@ -65,18 +66,18 @@ export function About() {
       transition: "opacity 1s ease, transform 1s ease",
     }}>
       <div>
-        <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>Tentang Saya</p>
+        <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>About Me</p>
         <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, marginBottom: "40px", color: "var(--ink)" }}>
-          Rasa ingin tahu,<br />ide yang dirancang,<br />solusi yang dibangun.
+          Built different.<br />Ships at dawn,<br />debugs at dusk.
         </h2>
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "var(--muted)", marginBottom: "16px" }}>
-          Saya lulusan Rekayasa Perangkat Lunak dari SMK Telkom Malang dan saat ini menempuh studi <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Sistem Informasi</strong> di Telkom University.
+          A <strong style={{ color: "var(--ink)", fontWeight: 500 }}>full stack developer</strong> who lives at the intersection of code and craft turning complex problems into elegant systems that actually work.
         </p>
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "var(--muted)" }}>
-          Saya tertarik pada pengembangan web, UI/UX, dan desain visual. Saat ini saya terus memperdalam dasar-dasarnya melalui belajar dan eksplorasi.
+          From backend architecture to pixel-perfect frontends, every layer of the stack is fair game and every project ships.
         </p>
         <blockquote style={{ marginTop: "32px", paddingLeft: "24px", borderLeft: `2px solid var(--wine)`, fontStyle: "italic", fontSize: "28px", lineHeight: 1.5, color: "var(--wine)", fontFamily: "'Cormorant Garamond', serif" }}>
-          &quot;Setiap hal yang baik dimulai dari <em style={{ fontStyle: "normal" }}>rasa ingin tahu.</em>&quot;
+          &quot;Why pick a lane when you can own the whole road <em style={{ fontStyle: "normal" }}>without a BRAIN</em>&quot;
         </blockquote>
       </div>
 
@@ -104,8 +105,8 @@ export function Interests({ dark }) {
   return (
     <section id="interests" style={{ background: "var(--bg-card)", padding: "80px 8vw" }}>
       <div style={{ textAlign: "center", marginBottom: "48px" }}>
-        <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>Yang Saya Pelajari</p>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, color: "var(--ink)" }}>Minat</h2>
+        <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>What I Love</p>
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, color: "var(--ink)" }}>Interests</h2>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}>
         {INTERESTS.map((item) => (

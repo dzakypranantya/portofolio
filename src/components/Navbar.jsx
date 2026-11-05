@@ -3,7 +3,7 @@ import { smoothScrollTo } from '../utils/smoothScroll';
 
 export default function Navbar({ active, dark }) {
   return (
-    <nav className="main-nav" aria-label="Navigasi utama" style={{
+    <nav className="main-nav" aria-label="Main navigation" style={{
       position: "fixed",
       top: "24px",
       left: "50%",

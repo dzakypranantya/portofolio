@@ -6,8 +6,8 @@ export function Education() {
   const [ref] = useInView();
   return (
     <section id="education" ref={ref} style={{ padding: "80px 8vw", background: "var(--bg)" }}>
-      <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>Latar Belakang</p>
-      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, marginBottom: "40px", color: "var(--ink)" }}>Pendidikan</h2>
+      <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>Background</p>
+      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, marginBottom: "40px", color: "var(--ink)" }}>Study</h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px" }}>
         {EDUCATION.map((edu) => (
           <div key={edu.name} className="education-card"
@@ -37,11 +37,8 @@ export function Education() {
 export function PortfolioSection() {
   return (
     <section id="karya" style={{ background: "var(--bg-card)", padding: "80px 8vw" }}>
-      <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>Jejak Karya</p>
-      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, marginBottom: "16px", color: "var(--ink)" }}>Portofolio</h2>
-      <p style={{ maxWidth: "620px", fontSize: "14px", lineHeight: 1.8, color: "var(--muted)", marginBottom: "40px" }}>
-        Saya sedang mengembangkan dan mengumpulkan karya. Untuk melihat profil serta hal yang saya bagikan, kunjungi:
-      </p>
+      <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", marginBottom: "12px" }}>Portfolio</p>
+      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(42px,6vw,72px)", fontWeight: 300, lineHeight: 1, marginBottom: "48px", color: "var(--ink)" }}>Portofolio</h2>
 
       <div className="portfolio-grid">
         {PORTFOLIO_DATA.map((item) => (
@@ -64,7 +61,7 @@ export function PortfolioSection() {
             <p style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--wine-light)", margin: "0 0 8px" }}>{item.category}</p>
             <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "26px", color: "var(--ink)", margin: "0 0 8px" }}>{item.title}</h3>
             <p style={{ fontSize: "13px", lineHeight: 1.7, color: "var(--muted)", margin: "0 0 18px" }}>{item.desc}</p>
-            <span style={{ fontSize: "12px", color: "var(--wine-light)", fontWeight: 500 }}>{item.linkLabel} ↗</span>
+            <span style={{ fontSize: "12px", color: "var(--wine-light)", fontWeight: 500 }}>🔗 View on {item.linkLabel} →</span>
           </a>
         ))}
       </div>
@@ -81,7 +78,7 @@ export function Footer() {
             Dzaky Pranantya<span style={{ color: "var(--wine-light)" }}>.</span>
           </div>
           <p style={{ color: "rgba(255,255,255,0.4)", fontStyle: "italic", marginTop: "4px", fontFamily: "'Cormorant Garamond', serif", fontSize: "16px" }}>
-            Mahasiswa Sistem Informasi · Indonesia
+            Full Stack Developer · East Java, Indonesia
           </p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px", textAlign: "right" }}>
@@ -90,7 +87,7 @@ export function Footer() {
             smoothScrollTo("#hero");
           }}
             style={{ fontSize: "13px", textDecoration: "none" }}>
-            Kembali ke atas ↑
+            Back to top ↑
           </a>
           <a className="footer-link" href="https://github.com/dzakypranantya" target="_blank" rel="noopener noreferrer"
             style={{ fontSize: "13px", textDecoration: "none" }}>
@@ -122,8 +119,8 @@ export function Footer() {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "rgba(255,255,255,0.2)" }}>
-        <span>© {new Date().getFullYear()} Dzaky Pranantya</span>
-        <span>Belajar dan terus bertumbuh.</span>
+        <span>Copyright © 2024 Dzaky Pranantya®</span>
+        <span>bawelmonyet</span>
       </div>
     </footer>
   );
