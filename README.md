@@ -1,8 +1,33 @@
-# React + Vite
+# Dzaky Portofolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website portofolio pribadi Dzaky Pranantya. Dibuat dengan React dan Vite untuk memperkenalkan latar pendidikan, minat di bidang teknologi dan desain, serta tautan ke profil karya.
 
-Currently, two official plugins are available:
+## Menjalankan secara lokal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Pastikan Node.js dan npm sudah terpasang, lalu jalankan:
+
+```bash
+npm install
+npm run dev
+```
+
+## Perintah yang tersedia
+
+- `npm run dev` — menjalankan server pengembangan.
+- `npm run build` — membuat build produksi di folder `dist`.
+- `npm run preview` — melihat build produksi secara lokal.
+- `npm run lint` — memeriksa kode dengan ESLint.
+
+## Struktur sumber
+
+```text
+src/
+├── components/       # Bagian UI dan komponen tampilan
+├── data/             # Data navigasi, pendidikan, minat, dan tautan
+├── hooks/            # Custom React hooks
+├── utils/            # Fungsi bantu
+├── Portfolio.jsx     # Komposisi halaman utama
+└── main.jsx          # Entry point React
+```
+
+Konten seperti pendidikan dan tautan profil dapat diperbarui di `src/data/portfolioData.js`.
